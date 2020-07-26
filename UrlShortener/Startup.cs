@@ -57,7 +57,8 @@ namespace UrlShortener
 
             app.UseMiddleware<ErrorHandler>();
 
-            app.UseHttpsRedirection();
+            // to use http server development 
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
