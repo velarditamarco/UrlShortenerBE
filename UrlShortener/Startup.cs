@@ -52,6 +52,7 @@ namespace UrlShortener
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseWelcomePage("/");
             }
 
             app.UseMiddleware<ErrorHandler>();
