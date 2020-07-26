@@ -65,7 +65,7 @@ namespace UrlShortener.Services
 
             var itemDb = GetBy(input.ShortLink);
 
-            if (itemDb != null)
+            if (itemDb != null && itemDb.Id != id)
                 return new ResponseHandler(400, "ShortLink already exist");
 
            
