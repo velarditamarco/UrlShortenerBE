@@ -15,7 +15,6 @@ namespace UrlShortener.Models
         [Required(ErrorMessage = "url required")]
         [Url(ErrorMessage = "url not valid")]
         public string URL { get; set; }
-
     }
 
     public class UrlShortenerModel : UrlShortenerInput

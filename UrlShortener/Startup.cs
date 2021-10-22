@@ -27,7 +27,6 @@ namespace UrlShortener
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -39,14 +38,10 @@ namespace UrlShortener
                 builder.AllowAnyMethod();
             }));
 
-            // add all class to inject into services
             services.AddSingleton<DataContext>();
-
-            // add DI services
             services.AddScoped<IUrlShortenerService, UrlShortenerService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -56,20 +51,14 @@ namespace UrlShortener
             }
 
             app.UseMiddleware<ErrorHandler>();
-
-            // to use http server development 
-            //app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseCors("MyPolicy");
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>  
             {
                 endpoints.MapControllers();
-            });
+            });  
         }
     }
 }

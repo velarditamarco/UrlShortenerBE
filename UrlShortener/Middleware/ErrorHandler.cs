@@ -48,6 +48,5 @@ namespace UrlShortener.Middleware
                 Message = exception.Message
             }.ToString());
         }
-
     }
 }

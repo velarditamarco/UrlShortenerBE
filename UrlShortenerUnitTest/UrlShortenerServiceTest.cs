@@ -17,7 +17,6 @@ namespace UrlShortenerUnitTest
 {
     public class UrlShortenerServiceTest
     {
-
         private readonly IUrlShortenerService _service;
 
         public UrlShortenerServiceTest()
@@ -62,9 +61,8 @@ namespace UrlShortenerUnitTest
 
             Assert.AreEqual(200, response.StatusCode);
 
-            this.IsItemCreated = true;
-
-            this.UrlLinksCount++;
+            IsItemCreated = true;
+            UrlLinksCount++;
             CheckList();
         }
 
@@ -80,12 +78,10 @@ namespace UrlShortenerUnitTest
         [Test, Order(3)]
         public void EditItem()
         {
-
             var list = _service.Get();
 
             if (!IsEmpty(list))
             {
-                // retriving guid of the item to edit
                 Guid itemGuid = list[0].Id;
 
                 UrlShortenerInput newItem = new UrlShortenerInput()
@@ -98,7 +94,6 @@ namespace UrlShortenerUnitTest
 
                 Assert.AreNotEqual(list[0].URL, Input.URL);
                 Assert.AreNotEqual(list[0].ShortLink, Input.ShortLink);
-
             }
         }
 
@@ -106,13 +101,11 @@ namespace UrlShortenerUnitTest
         [Test, Order(4)]
         public void ItemNotFound()
         {
-            // insert wrong guid to catch error
             var editResponse = _service.Edit(Guid.NewGuid(), this.Input);
             var deleteResponse = _service.Delete(Guid.NewGuid());
 
             Assert.AreEqual(404, editResponse.StatusCode);
             Assert.AreEqual(404, deleteResponse.StatusCode);
-
         }
 
         [Test, Order(5)]
@@ -122,22 +115,18 @@ namespace UrlShortenerUnitTest
 
             if (!IsEmpty(list))
             {
-                // retriving data to edit
                 Guid itemGuid = list[0].Id;
-
                 var response = _service.Delete(itemGuid);
 
                 Assert.AreEqual(200, response.StatusCode);
 
-
-                this.UrlLinksCount--;
-                this.IsItemCreated = false;
+                UrlLinksCount--;
+                IsItemCreated = false;
                 CheckList();
             }
         }
 
         private bool IsEmpty(List<UrlShortenerModel> list) =>
             list.IsNullOrEmpty();
-
     }
 }
