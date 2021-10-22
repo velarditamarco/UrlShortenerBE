@@ -10,7 +10,7 @@ namespace UrlShortener.Controllers
     [Route("api/[controller]")]
     public class UrlShortenerController : ControllerBase
     {
-        private readonly IUrlShortenerService _service; 
+        private readonly IUrlShortenerService _service;
 
         public UrlShortenerController(IUrlShortenerService service)
         {
@@ -20,6 +20,7 @@ namespace UrlShortener.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            Console.WriteLine("Log here");
             return Ok(_service.Get());
         }
 
@@ -32,16 +33,16 @@ namespace UrlShortener.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]UrlShortenerInput input)
+        public IActionResult Post([FromBody] UrlShortenerInput input)
         {
             var response = _service.Create(input);
             return StatusCode(response.StatusCode, response.Message);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody]UrlShortenerInput input)
+        public IActionResult Put(Guid id, [FromBody] UrlShortenerInput input)
         {
-            var response = _service.Edit(id,input);
+            var response = _service.Edit(id, input);
             return StatusCode(response.StatusCode, response.Message);
         }
 
