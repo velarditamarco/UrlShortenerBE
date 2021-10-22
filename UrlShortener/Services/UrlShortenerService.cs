@@ -81,6 +81,5 @@ namespace UrlShortener.Services
 
         public UrlShortenerModel GetBy(string shortLink) =>
             _data.urlLinks.FirstOrDefault(x => x.ShortLink.Trim().ToLower() == shortLink.Trim().ToLower());
-          
     }
 }

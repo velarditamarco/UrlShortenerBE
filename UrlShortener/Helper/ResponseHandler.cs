@@ -21,8 +21,6 @@ namespace UrlShortener.Helper
 
         public string Message { get; set; }
 
-
-
         public override string ToString()
         {
             return JsonSerializer.Serialize(this);

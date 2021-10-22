@@ -27,10 +27,7 @@ namespace UrlShortener.Controllers
         public IActionResult GetUrlBy(string shortLink)
         {
             var item = _service.GetBy(shortLink);
-
-            if (item == null)
-                return NotFound("Item not found");
-
+            if (item == null) return NotFound("Item not found");
             return Ok(item.URL);
         }
 
